@@ -1,0 +1,60 @@
+formatGen.txt	For Vim version 8.0	Last change 2017/12/27
+
+-----Configuration------
+
+To use formatGen on any C++ project, create a file named `.formatGen` in a
+parent directory of all source files. The `.formatGen` file should contain the
+following:
+```
+<format>
+<src-folder>
+```
+The first line `<format>` is the style of the include guards. The following
+tokens will be replaced:
+
+1. `{DIR}, {Dir}, {dir}` -> upper, normal, lower case directory name, separated
+by underscores
+2. `{FNAME}, {FName}, {fname}` -> upper, normal, lower case file name. The file
+names must not contain dots.
+3. `{EXT}, {Ext}, {ext}` -> file extension.
+
+The second line is the common parent directory to all headers. For example, if
+your project is structured like this:
+```
+.formatGen
+LICENSE
+README.md
+--/src <- Here lies all of your headers
+--...
+--/bin
+--...
+```
+Then `<src-folder>` should be `src`, with no slashes.
+
+Example:
+```
+_CPPTEST_{DIR}_{FName}_{ext}__
+src
+```
+When formatGen's include guard generator is applied to the file
+`src/core/Server.hpp`, it generates the following include guard:
+```
+#ifndef _CPPTEST_CORE_Server_hpp__
+#define _CPPTEST_CORE_Server_hpp__
+
+#endif // !_CPPTEST_CORE_Server_hpp__
+
+
+*FGIncludeGuard <path>*
+
+Format the include guard of the current buffer using a path. A .formatGen file
+must be present in the parent directories.
+
+*FGNamespace <namespace>*
+
+Generates the following:
+```
+namespace <namespace>
+{
+} // namespace <namespace>
+```
