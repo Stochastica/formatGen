@@ -72,8 +72,7 @@ be detected correctly.
 1. Include guards do not have preceding white spaces.
 2. `#define` and `#ifndef` must be on adjacent lines.
 3. If there are preprocessor commands that look like an include guard, they
-will be identified as an include guard and problems can occur. This will be
-fixed in the future.
+will be identified as an include guard and problems can occur.
 
 ### Namespace generation
 
@@ -84,12 +83,3 @@ namespace name
 } // namespace name
 ```
 On top of the cursor.
-
-### Utilities
-
-The utilities do not require a `.formatGen` configuration file.
-
-`updateCMake.py` automatically fetches a list of C++ source files from the
-specified directory and add them automatically to the `CMakeLists.txt` in the
-`pwd`. `updateCMakeQt.py` has additional Qt MOC support. See the scripts for
-details.
